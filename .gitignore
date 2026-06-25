@@ -1,0 +1,6 @@
+/target
+/dump.cs
+*.cs.bak
+
+# Input binaries (game files) — not redistributable.
+/Original

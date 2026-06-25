@@ -1,0 +1,22 @@
+[package]
+name = "static_mhy_dumper"
+version = "0.1.0"
+edition = "2021"
+description = "Static, assembly-scan-based IL2CPP 'MHY' metadata dumper"
+license = "GPL-3.0-only"
+
+[lib]
+name = "static_mhy_dumper"
+path = "src/lib.rs"
+
+[[bin]]
+name = "mhydump"
+path = "src/main.rs"
+
+[dependencies]
+pelite = "0.10"
+clap = { version = "4.6", features = ["derive"] }
+thiserror = "2"
+anyhow = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
