@@ -1,6 +1,6 @@
-# static-mhy-dumper
+# static-dumper
 
-A static IL2CPP metadata dumper. It reads the custom-encrypted (`MHY`) `global-metadata.dat` and the
+A static IL2CPP metadata dumper. It reads the custom-encrypted `global-metadata.dat` and the
 main program module (the one holding the IL2CPP/GameAssembly code and metadata tables) directly —
 with **no live process** — and emits an [Il2CppDumper](https://github.com/Perfare/Il2CppDumper)-style
 `dump.cs`.
