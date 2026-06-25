@@ -4,7 +4,7 @@
 //!
 //! Data flow: [`crate::decrypt::file::load`] → [`crate::decrypt::Metadata`] (owned buffers) → this
 //! view (borrows them) → the ported dump walk. The header-driven table offsets all live in the body
-//! buffer; the three runtime tables (typearr/methodptrs/genericClasses) live in the GameAssembly
+//! buffer; the three runtime tables (typearr/methodptrs/genericClasses) live in the GenshinImpact
 //! `.rdata` buffer.
 
 use crate::decrypt::{Metadata, Tables};
@@ -33,7 +33,7 @@ mod hdr {
 pub struct DecodedMetadata<'a> {
     pub header: Buffer<'a>,
     pub body: Buffer<'a>,
-    /// GameAssembly.exe image (for typearr/methodptrs/genericClasses + RVA math).
+    /// GenshinImpact.exe image (for typearr/methodptrs/genericClasses + RVA math).
     pub image: Buffer<'a>,
     pub tables: Tables,
 
@@ -149,7 +149,7 @@ mod tests {
     #[test]
     fn resolves_all_table_bases_in_range() {
         let (Ok(ga), Ok(gm)) = (
-            std::fs::read("Original/GameAssembly.exe"),
+            std::fs::read("Original/GenshinImpact.exe"),
             std::fs::read("Original/global-metadata.dat"),
         ) else {
             eprintln!("[skip] inputs not present");

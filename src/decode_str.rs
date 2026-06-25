@@ -59,8 +59,8 @@ mod tests {
             eprintln!("[skip] global-metadata.dat not present");
             return;
         };
-        let Ok(ga) = std::fs::read("Original/GameAssembly.exe") else {
-            eprintln!("[skip] GameAssembly.exe not present");
+        let Ok(ga) = std::fs::read("Original/GenshinImpact.exe") else {
+            eprintln!("[skip] GenshinImpact.exe not present");
             return;
         };
         let md = crate::decrypt::file::load(&ga, &gm).expect("load");

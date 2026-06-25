@@ -218,9 +218,9 @@ impl<'a> Image<'a> {
 mod tests {
     use super::*;
 
-    /// Path to the real GameAssembly.exe. Skipped if absent (e.g. CI without the binaries).
+    /// Path to the real GenshinImpact.exe. Skipped if absent (e.g. CI without the binaries).
     fn ga() -> Option<Image<'static>> {
-        let path = "Original/GameAssembly.exe";
+        let path = "Original/GenshinImpact.exe";
         let bytes = std::fs::read(path).ok()?;
         // Leak to get 'static — these tests are one-shot CLI runs.
         let b: &'static [u8] = Box::leak(bytes.into_boxed_slice());
@@ -232,7 +232,7 @@ mod tests {
         let img = match ga() {
             Some(i) => i,
             None => {
-                eprintln!("[skip] GameAssembly.exe not present");
+                eprintln!("[skip] GenshinImpact.exe not present");
                 return;
             }
         };
@@ -253,7 +253,7 @@ mod tests {
         let img = match ga() {
             Some(i) => i,
             None => {
-                eprintln!("[skip] GameAssembly.exe not present");
+                eprintln!("[skip] GenshinImpact.exe not present");
                 return;
             }
         };

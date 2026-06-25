@@ -16,7 +16,7 @@ struct Cli {
 enum Cmd {
     /// Milestone (a): parse a PE image, print its section table, ImageBase, and flag BSS globals.
     PeValidate {
-        /// Path to GameAssembly.exe (or any PE32+ image).
+        /// Path to GenshinImpact.exe (or any PE32+ image).
         #[arg(short, long)]
         exe: String,
     },
@@ -127,7 +127,7 @@ fn header_dump(exe: &str, metadata: &str) -> Result<()> {
         let ok = if off < md.body.len() { "OK" } else { "OOB" };
         println!("  {name:22} body+0x{off:08X}  [{ok}]");
     }
-    println!("\nGameAssembly .rdata table file-offsets:");
+    println!("\nGenshinImpact .rdata table file-offsets:");
     println!("  {:22} 0x{:08X}", "typearr", md.tables.typearr);
     println!("  {:22} 0x{:08X}", "methodptrs", md.tables.methodptrs);
     println!("  {:22} 0x{:08X}", "generic_classes", md.tables.generic_classes);

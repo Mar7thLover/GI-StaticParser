@@ -2,7 +2,7 @@
 //!
 //! Produces `Metadata { header, body }` purely from the on-disk files:
 //!   - `body`   = `global-metadata.dat[0x210..]` (the `f420` base; consumed in place at runtime).
-//!   - `header` = the embedded "MHY" blob in `GameAssembly.exe`'s `.rdata` (the `f418` struct).
+//!   - `header` = the embedded "MHY" blob in `GenshinImpact.exe`'s `.rdata` (the `f418` struct).
 //!
 //! The header is located by a *self-validating* scan: among the `MHY\0` occurrences in `.rdata`,
 //! the real one is the blob whose `+272` field (the string-section offset, decoded as
@@ -22,7 +22,7 @@ pub const BODY_OFFSET: usize = 0x210;
 const STRSEC_HDR_OFF: usize = 272;
 const STRSEC_BIAS: i64 = 1426623823;
 
-// Static pointer-chain anchors (VAs into GameAssembly.exe), written into globals at load time by the
+// Static pointer-chain anchors (VAs into GenshinImpact.exe), written into globals at load time by the
 // registration fn `0x1402A7C20`.
 //   typearr        = *(F400_VA + 0x18)
 //   methodptrs     = *(F3F8_VA + 0x60)
@@ -30,7 +30,7 @@ const STRSEC_BIAS: i64 = 1426623823;
 const F400_VA: u64 = 0x1424387A8;
 const F3F8_VA: u64 = 0x141F2EDD0;
 
-/// Build [`Metadata`] from the raw bytes of `GameAssembly.exe` and `global-metadata.dat`.
+/// Build [`Metadata`] from the raw bytes of `GenshinImpact.exe` and `global-metadata.dat`.
 pub fn load(game_assembly: &[u8], global_metadata: &[u8]) -> Result<Metadata> {
     if global_metadata.len() <= BODY_OFFSET {
         bail!("global-metadata.dat too small ({} bytes)", global_metadata.len());
@@ -42,7 +42,7 @@ pub fn load(game_assembly: &[u8], global_metadata: &[u8]) -> Result<Metadata> {
 
     let img = Image::parse(game_assembly)?;
     let header = find_embedded_header(&img, &body)
-        .ok_or_else(|| anyhow!("could not locate the embedded MHY header in GameAssembly .rdata"))?;
+        .ok_or_else(|| anyhow!("could not locate the embedded MHY header in GenshinImpact .rdata"))?;
     let tables = resolve_tables(&img)?;
 
     Ok(Metadata {
@@ -169,7 +169,7 @@ mod tests {
     #[test]
     fn file_strategy_decodes_mscorlib() {
         let (Ok(ga), Ok(gm)) = (
-            std::fs::read("Original/GameAssembly.exe"),
+            std::fs::read("Original/GenshinImpact.exe"),
             std::fs::read("Original/global-metadata.dat"),
         ) else {
             eprintln!("[skip] inputs not present");

@@ -1,6 +1,6 @@
 //! Static, assembly-scan-based IL2CPP "MHY" metadata dumper.
 //!
-//! Reads the on-disk files (`GameAssembly.exe`, `global-metadata.dat`) and emits an
+//! Reads the on-disk files (`GenshinImpact.exe`, `global-metadata.dat`) and emits an
 //! Il2CppDumper-style `dump.cs` purely statically — no live process. The decryption recipe (all
 //! offsets/constants/algorithms) is documented in `RECIPE.md`.
 //!

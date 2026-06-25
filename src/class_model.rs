@@ -166,7 +166,7 @@ mod tests {
     use super::*;
 
     fn load() -> Option<crate::decrypt::Metadata> {
-        let ga = std::fs::read("Original/GameAssembly.exe").ok()?;
+        let ga = std::fs::read("Original/GenshinImpact.exe").ok()?;
         let gm = std::fs::read("Original/global-metadata.dat").ok()?;
         crate::decrypt::file::load(&ga, &gm).ok()
     }

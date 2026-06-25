@@ -201,7 +201,7 @@ mod tests {
     #[test]
     fn type_name_resolves_class_via_typearr() {
         let (Ok(ga), Ok(gm)) = (
-            std::fs::read("Original/GameAssembly.exe"),
+            std::fs::read("Original/GenshinImpact.exe"),
             std::fs::read("Original/global-metadata.dat"),
         ) else {
             eprintln!("[skip] inputs not present");

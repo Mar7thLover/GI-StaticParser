@@ -2,7 +2,7 @@
 //!
 //! Every decode function is generic over `M: Memory` so the read layer can vary: [`Buffer`]
 //! addresses a decrypted byte slice by offset. All table addressing is `(base + offset)` where
-//! `base` is an offset into the decrypted body or the GameAssembly image.
+//! `base` is an offset into the decrypted body or the GenshinImpact image.
 
 use thiserror::Error;
 

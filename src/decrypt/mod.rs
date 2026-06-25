@@ -2,24 +2,24 @@
 //!
 //! The breakthrough (oracle-verified, see memory `static-decrypt-solved`): there is NO bulk body
 //! decrypt. The metadata body is simply the on-disk `global-metadata.dat` from offset `0x210`, and
-//! the metadata *header* (`f418`) is an embedded `.rdata` blob inside `GameAssembly.exe` (a second
+//! the metadata *header* (`f418`) is an embedded `.rdata` blob inside `GenshinImpact.exe` (a second
 //! "MHY" header). Per-string/per-field decryption is then applied lazily by the ported per-string/per-field
 //! logic, exactly as at runtime. So the `File` strategy needs no key schedule — only to slice the
 //! buffers out of the two input files.
 //!
-//! Three runtime tables (`typearr`, `methodptrs`, `genericClasses`) live in `GameAssembly.exe`'s
+//! Three runtime tables (`typearr`, `methodptrs`, `genericClasses`) live in `GenshinImpact.exe`'s
 //! `.rdata` (written into the `base+0x521Fxxx` globals by the static registration fn `0x1402A7C20`),
 //! so we keep the whole exe image around and expose those table VAs.
 
 pub mod file;
 
-/// Owned decrypted metadata plus the GameAssembly image needed for the .rdata tables.
+/// Owned decrypted metadata plus the GenshinImpact image needed for the .rdata tables.
 pub struct Metadata {
     /// The `f418` header struct (the embedded `.rdata` "MHY" blob, ≥0x1A0 bytes).
     pub header: Vec<u8>,
     /// The `f420` body base = `global-metadata.dat[0x210..]`.
     pub body: Vec<u8>,
-    /// The full `GameAssembly.exe` bytes (for `.rdata`-resident tables: typearr/methodptrs/etc.).
+    /// The full `GenshinImpact.exe` bytes (for `.rdata`-resident tables: typearr/methodptrs/etc.).
     pub game_assembly: Vec<u8>,
     /// Resolved table locations (file offsets into `game_assembly`) + ImageBase.
     pub tables: Tables,

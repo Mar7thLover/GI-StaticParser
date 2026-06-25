@@ -212,7 +212,7 @@ mod tests {
     #[test]
     fn dumps_anchor_types() {
         let (Ok(ga), Ok(gm)) = (
-            std::fs::read("Original/GameAssembly.exe"),
+            std::fs::read("Original/GenshinImpact.exe"),
             std::fs::read("Original/global-metadata.dat"),
         ) else {
             eprintln!("[skip] inputs not present");
@@ -241,7 +241,7 @@ mod tests {
     #[test]
     fn probe_tflags_anchors() {
         let (Ok(ga), Ok(gm)) = (
-            std::fs::read("Original/GameAssembly.exe"),
+            std::fs::read("Original/GenshinImpact.exe"),
             std::fs::read("Original/global-metadata.dat"),
         ) else {
             eprintln!("[skip] inputs not present");
@@ -271,7 +271,7 @@ mod tests {
     #[ignore]
     fn full_dump() {
         let (Ok(ga), Ok(gm)) = (
-            std::fs::read("Original/GameAssembly.exe"),
+            std::fs::read("Original/GenshinImpact.exe"),
             std::fs::read("Original/global-metadata.dat"),
         ) else {
             eprintln!("[skip] inputs not present");
